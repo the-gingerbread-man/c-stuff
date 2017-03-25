@@ -37,5 +37,3 @@ long htoi(char digits[], int length)
 
   return dec;
 }
-
-
