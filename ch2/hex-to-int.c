@@ -14,6 +14,7 @@ int main(void)
 /**
   * htoi: Converts a string of hex digits to a long integer
   *       Note: assumes BIG ENDIAN inputs
+  * TODO: Add explicit '0x' checking and then ban all invalid inputs
   */
 long htoi(char digits[], int length)
 {
