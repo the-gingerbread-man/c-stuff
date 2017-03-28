@@ -3,6 +3,7 @@
 
 unsigned int createbitmask32(int n, int p);
 unsigned int bettercreatebitmask32(int n, int p);
+unsigned int setbits(unsigned int x, int p, int n, unsigned int y);
 
 int main(void)
 {
@@ -19,6 +20,9 @@ int main(void)
   // test = bettercreatebitmask32(1, 4);  // -> 0x8000000
   // test = bettercreatebitmask32(3, 8);  // -> 0xe00000
   // test = bettercreatebitmask32(1, 31); // -> 0x1
+  // test = bettercreatebitmask32(2, 2); // -> 0x30000000
+
+  test = setbits(0xF0, 3, 27, 0x55); // -> 0xf4
 
   return 0;
 }
@@ -51,4 +55,18 @@ unsigned int bettercreatebitmask32(int n, int p)
     mask = mask | 1 << p--;
 
   return mask;
+}
+
+/* setbits: set the n bits beginning at position p (big to small) to the rightmost n bits of y */
+unsigned int setbits(unsigned int x, int n, int p, unsigned int y)
+{
+  unsigned int mask;
+  mask = bettercreatebitmask32(n, p);
+
+  y = y << (32 - n - p);
+  y = y & mask;
+  x = x & ~mask;
+
+  return x | y;
+
 }
