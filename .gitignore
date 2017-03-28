@@ -1,2 +1,4 @@
 *.out
+*.x
+*.x.dSYM
 */tests
