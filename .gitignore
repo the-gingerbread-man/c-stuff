@@ -1,4 +1,6 @@
+*.o
 *.out
 *.x
 *.x.dSYM
 */tests
+misc/sandbox.c
