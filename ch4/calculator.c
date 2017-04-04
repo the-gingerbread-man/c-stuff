@@ -15,6 +15,11 @@ void ungetch(char);
 void push(double);
 double pop();
 
+double print();
+double duplicate();
+void swap();
+void clear();
+
 char buf[BUFSIZE]; /* input buffer stack */
 int bufp = 0; /* next free stack position */
 
@@ -150,4 +155,49 @@ double pop(void)
     printf("error: stack empty, can't pop\n");
     return 0.0;
   }
+}
+
+/* print: returns the top element of the calculator stack val[] without popping it */
+double print()
+{
+  if (sp > 0)
+    return val[sp - 1];
+
+  printf("error: stack empty, can't print\n");
+  return 0.0;
+}
+
+/* duplicate: copies the top element of the calculator stack val[] and returns it */
+double duplicate()
+{
+  if (sp > 0) {
+    push(print());
+    return print();
+  }
+
+  printf("error: stack empty, can't duplicate\n");
+  return 0.0;
+}
+
+/* swap: swaps the top two elements of the calculator stack val[] */
+void swap()
+{
+  double a, b;
+
+  if (sp > 1) {
+    a = pop();
+    b = pop();
+    push(a);
+    push(b);
+    return;
+  }
+
+  printf("error: stack has only %d elements, can't swap\n", sp);
+}
+
+/* clear: removes all elements from the calculator stack val[] */
+void clear()
+{
+  while (sp > 0)
+    pop();
 }
