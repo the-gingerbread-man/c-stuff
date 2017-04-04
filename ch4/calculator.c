@@ -102,13 +102,14 @@ int getop(char s[])
     return c; /* not a number or part of a number */
 
   i = 0;
-  if (c == '-')
-    if (isdigit(c = getch())) /* negative number */
-      s[i++] = c;
-    else { /* minus operator */
+  if (c == '-') {
+    if (isdigit(c = getch())) { /* negative number */
+      s[++i] = c;
+    } else { /* minus operator */
       ungetch(c);
       return '-';
     }
+  }
 
   if (isdigit(c)) /* collect integer part (plus the character the loop fails on, most likely ' ') */
     while (isdigit(s[++i] = c = getch()))
