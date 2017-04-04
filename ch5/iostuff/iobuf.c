@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "iostuff.h"
 
-static char buf[BUFSIZE];
+static int buf[BUFSIZE];
 static int bp;
 
 /** getch: reads one character from the input buffer, or from stdin if it's empty */
-char getch(void)
+int getch(void)
 {
   return (bp > 0)
             ? buf[--bp]
@@ -13,7 +13,7 @@ char getch(void)
 }
 
 /** ungetch: puts one character onto the input buffer */
-void ungetch(char c)
+void ungetch(int c)
 {
   if (bp >= BUFSIZE)
     printf("error: ungetch can't put %c, input buffer full", c);
