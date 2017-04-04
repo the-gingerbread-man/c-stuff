@@ -3,11 +3,11 @@
 
 int main(void)
 {
-  int i;
+  double i;
 
-  while (getint(&i) != EOF) {
-    printf("i:\t%d\n", i);
+  while (getfloat(&i) != EOF) {
+    printf("i:\t%f\n", i);
   }
-
+  printf("main is done, i: %f", i);
   return 0;
 }
