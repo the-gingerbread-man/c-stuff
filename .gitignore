@@ -4,3 +4,4 @@
 *.x.dSYM
 **/tests
 misc/sandbox.c
+misc/*
