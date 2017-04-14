@@ -1,21 +1,19 @@
-#include <stdio.h>
-#include "astr.h"
 
 /**
   * astrcat: re-implements strcat from <string.h>
-  *          appends each character of b onto the end of a
+  *          appends each character of ct onto the end of s
+  *
+  * returns a pointer to the beginning of the full concatinated string
   */
-void astrcat(char *a, char *b)
+char *astrcat(char *s, char *ct)
 {
-  // while (*a++)
-  //   ; /* skip to the end of  a */
-  // a--;
-  // while (*a++ = *b++)
-  //   ; /* append each character in b to the end of a */
+  char *out = s;
 
-  while (*a++)
-    ; /* skip to the end of a */
-  a--;
-  astrcpy(a, b);
+  while (*s++)
+    ; /* skip to the end of  a */
+  s--; /* back up so that ct[0] overwrites the old null terminator of s */
+  while ((*s++ = *ct++))
+    ; /* append each character in b to the end of a */
 
+  return out;
 }

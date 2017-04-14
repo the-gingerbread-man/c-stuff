@@ -1,8 +1,10 @@
-#include <stdio.h>
 
-/* astrcpy: copies each character of from to to, pointer version */
-void astrcpy(char *to, char *from)
+/* astrcpy: copies each character of ct to s, including '\0' pointer version */
+char *astrcpy(char *s, char *ct)
 {
-  while (*to++ = *from++)
+  char *out = s;
+
+  while ((*s++ = *ct++))
     ;
+  return out;
 }

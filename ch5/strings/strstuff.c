@@ -3,21 +3,24 @@
 
 int main(void)
 {
-  char h[20] = "Hello, ";
-  char w[20] = "World!";
-  char q[20] = "ld!";
-  char f[20] = "old";
-  // char e[20] = {}; /* initalize to zeros */
+  /* test cases */
+  char hello[20] = "Hello, ";
+  char world[20] = "World!";
+  char helend[20] = "o, ";
+  char nhelend[20] = "o. ";
+  char cmphello[20] = "Helooo?";
 
-  // printf("e: %s\n", e);
-  // astrcpy(e, h);
-  // printf("e: %s\n", e);
+  // printf("astrcat:\t%s\n", astrcat(hello, world)); // -> "Hello, World!"
+  // printf("astrncat:\t%s\n", astrncat(hello, world, 3)); // -> "Hello, Wor"
 
-  // printf("h: %s\n", h);
-  // printf("--------------------\n");
-  // astrcat(h, w);
-  // printf("h: %s\n", h);
+  // printf("astrcpy:\t%s\n", astrcpy(hello, world)); // -> "World!"
+  // printf("astrncpy:\t%s\n", astrncpy(hello, world, 3)); // -> "Worlo, "
 
-  printf("%d\n%d\n", astrend(w, q), astrend(q, f));
+  // printf("astrend:\t%d\n", astrend(hello, helend)); // -> 1
+  // printf("astrend:\t%d\n", astrend(hello, nhelend)); // -> 0
+
+  // printf("astrncmp:\t%d\n", astrncmp(hello, cmphello, 3)); // -> 0
+  // printf("astrncmp:\t%d\n", astrncmp(hello, cmphello, 6)); // -> (not zero)
+
   return 1;
 }
