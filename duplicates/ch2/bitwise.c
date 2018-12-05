@@ -1,26 +1,25 @@
 #include <stdio.h>
 
-int setbits(int, int, int, int);
+unsigned int setbits(unsigned int, int, int, unsigned int);
 int invert(int, int, int);
 int rightrot(int, int);
 
 int main(void)
 {
   // test setbits
-  printf("setbits(0, 4, 3, ~0) expected 112, got %d\n", setbits(0, 4, 3, ~0));
-  printf("setbits(~0, 4, 3, 0) expected 143, got %d\n", setbits(~0, 4, 3, 0));
+  printf("setbits(x=73, p = 10, n = 3, y = 30)\nGot:\t%u\tExpected:\t841\n", setbits(73u, 10, 3, 30u));
   return 0;
 }
 
 /* return x with the n bits that begin at position p set to the rightmost n bits of y,
  * leaving the rightmost bits unchanged
  */
-int setbits (int x, int p, int n, int y)
+unsigned int setbits (unsigned int x, int p, int n, unsigned int y)
 {
-  int y_mask = ~0 << n;
-  y = (y & ~y_mask) << p;
+  unsigned int y_mask = ~(~0 << n);
+  y = (y & y_mask) << p - n;
   
-  int x_mask = ~0 << p ^ ~0 << p + n;
+  unsigned int x_mask = ~0 << p - n ^ ~(~0 << p);
   x = x & x_mask;
   
   return x | y;
