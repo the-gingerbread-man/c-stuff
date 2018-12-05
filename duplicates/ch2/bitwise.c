@@ -1,13 +1,20 @@
 #include <stdio.h>
 
 unsigned int setbits(unsigned int, int, int, unsigned int);
-int invert(int, int, int);
+unsigned int invert(unsigned int, int, int);
 int rightrot(int, int);
 
 int main(void)
 {
   // test setbits
-  printf("setbits(x=73, p = 10, n = 3, y = 30)\nGot:\t%u\tExpected:\t841\n", setbits(73u, 10, 3, 30u));
+  printf("setbits(x=73, p = 10, n = 3, y = 30)\nGot:\t%u\tExpected:\t841\n\n", setbits(73u, 10, 3, 30u));
+
+  // test invert
+  printf("invert(x=170, p=4, n=3)\nGot:\t%u\tExpected:\t164\n\n", invert(170u, 4, 3));
+  
+  // test rightrot
+
+  
   return 0;
 }
 
@@ -27,14 +34,14 @@ unsigned int setbits (unsigned int x, int p, int n, unsigned int y)
 
 /* return x with the n bits that begin at position p inverted
  */
-int invert (int x, int p, int n)
+unsigned int invert (unsigned int x, int p, int n)
 {
-  int prefix = x & ~0 << p + n;
-  int suffix = x ^ ~0 << n;
+  unsigned int mask = ~0 << (p - n) ^ ~(~0 << p);
 
-  x = x ^ prefix;
-  x = x ^ suffix;
-  return x | prefix | suffix;
+  unsigned int unaffected_part = x & mask;
+  unsigned int inverted_part = ~x ^ mask;
+
+  return unaffected_part | inverted_part;
 }
 
 /* return x rotated to the right by n positions

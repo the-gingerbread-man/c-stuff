@@ -1,11 +1,11 @@
 ## Bitwise.c
 
-### Setbits:
+### Setbits
 Takes two unsigned ints (x and y) and coordinates p and n,
 and sets the n bits of x starting at position p (counting from the right)
 to the rightmost n bits of y.
 
-Ex. setbits(x = 73, p = 10, n = 3, y = 30) (o = expected output)
+Ex. setbits(x = 73u, p = 10, n = 3, y = 30u) (o = expected output)
 x =  73 = 0000.0000.0000.0000.0000.0000.0100.1001
 y =  30 = 0000.0000.0000.0000.0000.0000.0001.1110
 o = 841 = 0000.0000.0000.0000.0000.0011.0100.1001
@@ -29,3 +29,19 @@ Algorithm:
                                             ** *
 5. Zero out the bits of x between p and (p - n) by applying a bitwise & and x-mask.
 6. Return the bitwise OR of x and y.
+
+### Invert
+Takes one unsigned int (x) and returns x with the n bits beginning at position p inverted.
+
+Ex: invert(170u, 4, 3) (o = expected output)
+x = 1010.1010
+o = 1010.0100
+changed: ***
+
+Algorithm:
+note: (Can't just call setbits() because that will use the rightmost bits of y, not the same-position bits).
+1. Create a mask for bits where p > bit-position > p - n
+   i.e. p = 4, n = 2, mask = 1111.0011
+2. Apply AND to x and the mask to get the unaffected part of x.
+3. Apply XOR to the one's complement (inverse) of x to isolate the inverted part.
+4. Combine the unaffected and inverted parts of x with OR, and return.
