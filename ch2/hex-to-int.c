@@ -25,8 +25,8 @@ long htoi(char digits[], int length)
   dec = exp = 0;
 
   while (length > 0) {
-    place = pow(16, exp++);
-    digit = digits[--length];
+    place = pow(16, exp++);  /* calculate the place value */
+    digit = digits[--length]; /* loop through the hex digits R -> L */
 
     if ('0' <= digit && digit <= '9')
       dec += (digit - '0') * place;
