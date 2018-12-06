@@ -2,7 +2,7 @@
 
 unsigned int setbits(unsigned int, int, int, unsigned int);
 unsigned int invert(unsigned int, int, int);
-int rightrot(int, int);
+unsigned int rightrot(unsigned int, int);
 
 int main(void)
 {
@@ -13,7 +13,7 @@ int main(void)
   printf("invert(x=170, p=4, n=3)\nGot:\t%u\tExpected:\t164\n\n", invert(170u, 4, 3));
   
   // test rightrot
-
+  printf("rightrot(x=15, n=2)\nGot:\t%u\tExpected:\t3221225475\n\n", rightrot(15u, 2));
   
   return 0;
 }
@@ -47,12 +47,9 @@ unsigned int invert (unsigned int x, int p, int n)
 /* return x rotated to the right by n positions
  * assumes 32-bit integers
  */
-int rightrot(int x, int n)
+unsigned int rightrot(unsigned int x, int n)
 {
-  int tail = x ^ ~0 << n;
+  unsigned int tail = x << (32 - n); // intentionally overflow int and truncate the non-tail part of x
 
-  x = x >> n;
-  tail = tail << 32 - n;
-
-  return x & tail;
+  return x >> n | tail;
 }

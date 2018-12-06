@@ -45,3 +45,15 @@ note: (Can't just call setbits() because that will use the rightmost bits of y, 
 2. Apply AND to x and the mask to get the unaffected part of x.
 3. Apply XOR to the one's complement (inverse) of x to isolate the inverted part.
 4. Combine the unaffected and inverted parts of x with OR, and return.
+
+### Rightrot
+Takes one unsigned int (x) and returns x with the bits rotated to the right n places.
+Assumes 32-bit unsigned ints.
+
+Ex. rightrot(15u, 2) (o = expected output)
+x = 0000.0000.0000.0000.0000.0000.0000.1111
+o = 1100.0000.0000.0000.0000.0000.0000.0011
+
+Algorithm:
+1. Get the "tail" by left-shifting x by 32 - n.
+2. Rightshift x by n, then add the tail part back with a bitwise OR. Return.
