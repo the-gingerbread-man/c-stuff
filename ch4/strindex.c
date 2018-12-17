@@ -1,5 +1,5 @@
-#import <stdio.h>
-#define MAXLINE 1000
+#include <stdio.h>
+define#JJ MAXLINE 1000
 
 int strindexright(char source[], char target[], int slen, int tlen);
 
