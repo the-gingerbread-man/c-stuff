@@ -1,0 +1,8 @@
+#-*- mode:org -*-
+#+TITLE:      Notes on K&R "The C Programming Language"
+#+AUTHOR:     Alex Patch
+#+EMAIL:      alex.patch3@gmail.com
+#+LANGUAGE:   en
+
+* Chapter 1: Introduction
+  - 
